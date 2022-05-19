@@ -4,6 +4,8 @@ const path = require('path');
 // 第二個區塊 第三方模組(套件)
 const express = require('express');
 const bodyParser = require('body-parser');
+const Sequelize = require('sequelize');
+
 
 // 第三個區塊 自建模組
 const authRoutes = require('./routes/auth'); 
@@ -14,6 +16,12 @@ const errorRoutes = require('./routes/404');
 ////////////////////////////////////////////////////////////////
 
 const app = express();
+
+//建立一個資料庫
+const database = new Sequelize('demo', 'root', 'yourpassowrd', {
+    dialect: 'mysql', 
+    host: 'localhost'
+});
 
 // middleware
 app.set('view engine', 'ejs');
@@ -37,10 +45,24 @@ app.use(authRoutes);
 app.use(shopRoutes);
 app.use(errorRoutes);
 
+//這段拿掉
+// app.listen(3000, () => {
+// 	console.log('Web Server is running on port 3000');
+// });
 
-app.listen(3000, () => {
-	console.log('Web Server is running on port 3000');
-});
+//換成以下：去抓資料庫
+database
+	.sync()
+	.then((result) => {
+		app.listen(3000, () => {
+			console.log('Web Server is running on port 3000');
+		});
+	})
+	.catch((err) => {
+		console.log('create web server error: ', err);
+	});
+//接著在mySQL新增名為demo的資料庫
+
 
 const products = [
     {

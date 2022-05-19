@@ -1,3 +1,13 @@
+const getIndex = (req, res) => {
+    res.status(200)
+        .render('index', {
+            path: '/',
+            pageTitle: 'Book Your Books online',
+            products
+        });
+}
+
+
 const getLogin = (req, res) => {
     res.status(200)
         .render('login', {
@@ -23,4 +33,5 @@ module.exports = {
     getLogin,
     postLogin,
     postLogout,
+    getIndex
 }
