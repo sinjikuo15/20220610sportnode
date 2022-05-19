@@ -12,6 +12,7 @@ const database = require('./utils/database');
 const authRoutes = require('./routes/auth'); 
 const shopRoutes = require('./routes/shop'); 
 const errorRoutes = require('./routes/404');
+const Product = require('./models/product')
 
 
 ////////////////////////////////////////////////////////////////
@@ -26,30 +27,17 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use((req, res, next) => {
-	console.log('Hello!');
-    next();
-});
-
-app.use((req, res, next) => {
-	console.log('World!');
-    next();
-});
-
 
 app.use(authRoutes);
 app.use(shopRoutes);
 app.use(errorRoutes);
 
-//這段拿掉
-// app.listen(3000, () => {
-// 	console.log('Web Server is running on port 3000');
-// });
 
-//換成以下：去抓資料庫
 database
 	.sync()
 	.then((result) => {
+        Product.bulkCreate(products);
+        //bulkCreate輸入多筆資料
 		app.listen(3000, () => {
 			console.log('Web Server is running on port 3000');
 		});
@@ -57,7 +45,7 @@ database
 	.catch((err) => {
 		console.log('create web server error: ', err);
 	});
-//接著在mySQL新增名為demo的資料庫
+
 
 
 const products = [
