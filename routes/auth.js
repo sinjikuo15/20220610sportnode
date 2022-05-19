@@ -7,7 +7,7 @@ const authController = require('../controllers/auth')
 
 const router = express.Router();
 
-router.get('/', authController.getIndex);
+// router.get('/', authController.getIndex);
 
 router.get('/login', authController.getLogin);
 

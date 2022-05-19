@@ -1,64 +1,11 @@
-// 第一個區塊 內建模組
-const path = require('path');
-
-// 第二個區塊 第三方模組(套件)
-const express = require('express');
-const bodyParser = require('body-parser');
-
-
-// 第三個區塊 自建模組
-const database = require('./utils/database'); 
-//引用資料庫
-const authRoutes = require('./routes/auth'); 
-const shopRoutes = require('./routes/shop'); 
-const errorRoutes = require('./routes/404');
-
-
-////////////////////////////////////////////////////////////////
-
-const app = express();
-
-
-// middleware
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use((req, res, next) => {
-	console.log('Hello!');
-    next();
-});
-
-app.use((req, res, next) => {
-	console.log('World!');
-    next();
-});
-
-
-app.use(authRoutes);
-app.use(shopRoutes);
-app.use(errorRoutes);
-
-//這段拿掉
-// app.listen(3000, () => {
-// 	console.log('Web Server is running on port 3000');
-// });
-
-//換成以下：去抓資料庫
-database
-	.sync()
-	.then((result) => {
-		app.listen(3000, () => {
-			console.log('Web Server is running on port 3000');
-		});
-	})
-	.catch((err) => {
-		console.log('create web server error: ', err);
-	});
-//接著在mySQL新增名為demo的資料庫
-
+const getIndex = (req, res) => {
+    res.status(200)
+        .render('index', {
+            path: '/',
+            pageTitle: 'Book Your Books online',
+            products
+        });
+}
 
 const products = [
     {
@@ -80,3 +27,7 @@ const products = [
         imageUrl: 'https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/062/76/0010627615.jpg&v=5315ab5f&w=348&h=348'
     },
 ];
+
+module.exports = {
+    getIndex
+}
