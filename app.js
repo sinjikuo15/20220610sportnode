@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 
 
 // 第三個區塊 自建模組
-const database = require('./utils/database'); 
+const database = require('./utils/database');
 //引用資料庫
-const authRoutes = require('./routes/auth'); 
-const shopRoutes = require('./routes/shop'); 
+const authRoutes = require('./routes/auth');
+const shopRoutes = require('./routes/shop');
 const errorRoutes = require('./routes/404');
 const Product = require('./models/product')
 
@@ -34,17 +34,18 @@ app.use(errorRoutes);
 
 
 database
-	.sync()
-	.then((result) => {
+    .sync({ force: true })
+    //重設資料庫，測試資料時就不會
+    .then((result) => {
         Product.bulkCreate(products);
         //bulkCreate輸入多筆資料
-		app.listen(3000, () => {
-			console.log('Web Server is running on port 3000');
-		});
-	})
-	.catch((err) => {
-		console.log('create web server error: ', err);
-	});
+        app.listen(3000, () => {
+            console.log('Web Server is running on port 3000');
+        });
+    })
+    .catch((err) => {
+        console.log('create web server error: ', err);
+    });
 
 
 
