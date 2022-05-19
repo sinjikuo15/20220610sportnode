@@ -24,12 +24,15 @@ const postLogin = (req, res) => {
             }
             if (user.password === password) {
                 console.log('login: 成功');
+                req.session.isLogin = true;
+                //紀錄session
                 return res.redirect('/')
             } 
             console.log('login: 找不到此 user 或密碼錯誤');
             res.redirect('/login');
         })
         .catch((err) => {
+            req.session.isLogin = false;
             console.log('login error:', err);
         });
 };

@@ -4,6 +4,7 @@ const path = require('path');
 // 第二個區塊 第三方模組(套件)
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 
 // 第三個區塊 自建模組
@@ -13,7 +14,8 @@ const authRoutes = require('./routes/auth');
 const shopRoutes = require('./routes/shop');
 const errorRoutes = require('./routes/404');
 const Product = require('./models/product');
-const User = require('./models/user')
+const User = require('./models/user');
+
 
 
 ////////////////////////////////////////////////////////////////
@@ -28,6 +30,20 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 //bodyParser用來解析POST傳來的資料
+
+app.use(session({ 
+	secret: 'sessionToken',  // 加密用的字串
+	resave: false,   // 沒變更內容是否強制回存
+	saveUninitialized: false ,  // 新 session 未變更內容是否儲存
+	cookie: {
+		maxAge: 10000 // session 狀態儲存多久？單位為毫秒
+	}
+})); 
+
+app.use((req, res, next) => {
+    res.locals.isLogin = req.session.isLogin || false;
+    next();
+});
 
 app.use(authRoutes);
 app.use(shopRoutes);
