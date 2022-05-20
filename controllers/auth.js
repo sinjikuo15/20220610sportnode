@@ -4,7 +4,7 @@ const User = require('../models/user');
 const getLogin = (req, res) => {
     res.status(200)
         .render('auth/login', {
-            path: 'login',
+            
             pageTitle: 'Login'
         });
 };
