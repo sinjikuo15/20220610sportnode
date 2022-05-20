@@ -47,6 +47,7 @@ app.use(session({
 app.use((req, res, next) => {
     res.locals.path = req.url;
     res.locals.isLogin = req.session.isLogin || false;
+    //isLogin是一個布林值，意思是是否登入
     next();
 });
 

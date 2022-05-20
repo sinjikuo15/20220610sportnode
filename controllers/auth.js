@@ -34,20 +34,31 @@ const postLogin = (req, res) => {
     User.findOne({ where: { email }})
         .then((user) => {
             if (!user) {
-                req.flash('errorMessage', '錯誤的 Email 或 Password。');
+                req.flash('errorMessage', '錯誤的 Email 或 Password。')
                 return res.redirect('/login');
             }
-            if (user.password === password) {
-                console.log('login: 成功');
-                req.session.isLogin = true;
-                //紀錄session
-                return res.redirect('/')
-            } 
-            req.flash('errorMessage', '錯誤的 Email 或 Password。');
-            res.redirect('/login');
+            bcryptjs
+                .compare(password, user.password)
+                //比對鍵入的password是否跟資料庫雜湊的密碼user.password一樣，並回傳一個布林值
+                .then((isMatch) => {
+                    if (isMatch) {
+                        req.session.user = user;
+                        req.session.isLogin = true;
+                        //isLogin在app.js定義了，意思是有無登入?是一個布林值
+                        return req.session.save((err) => {
+                            console.log('postLogin - save session error: ', err);
+                            res.redirect('/');
+                        });
+                    }
+                    //不匹配的話
+                    req.flash('errorMessage', '錯誤的 Email 或 Password。')
+                    res.redirect('/login');
+                })
+                .catch((err) => {
+                    return res.redirect('/login');
+                })
         })
         .catch((err) => {
-            req.session.isLogin = false;
             console.log('login error:', err);
         });
 };
