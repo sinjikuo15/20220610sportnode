@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const bcryptjs = require('bcryptjs');
 
 const getLogin = (req, res) => {
     const errorMessage = req.flash('errorMessage')[0];
@@ -61,7 +61,13 @@ const postSignup = (req, res) => {
                 return res.redirect('/signup');
             } else {
                 //signup寫入資料庫
-                return User.create({ displayName, email, password });
+                return bcryptjs.hash(password, 12)
+                    .then((hashedPassword) => {
+                        return User.create({ displayName, email, password: hashedPassword });
+                    })
+                    .catch((err) => {
+                        console.log('create new user error: ', err);
+                    })
             }
         })
         .then((result) => {

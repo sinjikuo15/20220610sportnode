@@ -5,6 +5,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const connectFlash = require('connect-flash');
 
 
 // 第三個區塊 自建模組
@@ -15,7 +16,7 @@ const shopRoutes = require('./routes/shop');
 const errorRoutes = require('./routes/404');
 const Product = require('./models/product');
 const User = require('./models/user');
-const connectFlash = require('connect-flash');
+
 
 
 
@@ -58,9 +59,9 @@ database
     .sync({ force: true })
     //重設資料庫，測試資料時就不會
     .then((result) => {
-        User.create({ displayName: 'Admin', email: 'admin@skoob.com', password: '11111111'})
+        // User.create({ displayName: 'Admin', email: 'admin@skoob.com', password: '11111111'})
         //新增使用者
-        Product.bulkCreate(products);
+        // Product.bulkCreate(products);
         app.listen(3000, () => {
             console.log('Web Server is running on port 3000');
         });
