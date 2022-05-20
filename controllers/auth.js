@@ -9,10 +9,14 @@ const getLogin = (req, res) => {
         });
 };
 
-
+//登出時毀滅session
 const postLogout = (req, res) => {
-    res.redirect('/login')
+    req.session.destroy((err) => {
+        console.log('session destroy() error: ', err);
+        res.redirect('/login');
+    });
 };
+
 
 const postLogin = (req, res) => {
     const { email, password } = req.body;
@@ -36,6 +40,8 @@ const postLogin = (req, res) => {
             console.log('login error:', err);
         });
 };
+
+
 
 module.exports = {
     getLogin,
