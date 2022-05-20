@@ -15,6 +15,7 @@ const shopRoutes = require('./routes/shop');
 const errorRoutes = require('./routes/404');
 const Product = require('./models/product');
 const User = require('./models/user');
+const connectFlash = require('connect-flash');
 
 
 
@@ -30,6 +31,8 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 //bodyParser用來解析POST傳來的資料
+
+app.use(connectFlash());
 
 app.use(session({ 
 	secret: 'sessionToken',  // 加密用的字串
