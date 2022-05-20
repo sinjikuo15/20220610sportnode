@@ -13,7 +13,6 @@ const getLogin = (req, res) => {
 
 const getSignup = (req, res) => {
     const errorMessage = req.flash('errorMessage')[0];
-
     res.status(200)
         .render('auth/signup', {
             pageTitle: 'Signup',
@@ -61,7 +60,8 @@ const postSignup = (req, res) => {
                 req.flash('errorMessage', '此帳號已存在！請使用其他 Email。')
                 return res.redirect('/signup');
             } else {
-                // TODO: 實作註冊功能
+                //signup寫入資料庫
+                return User.create({ displayName, email, password });
             }
         })
         .then((result) => {
