@@ -11,6 +11,11 @@
         <li class="nav-item">
           <a class="nav-link <%= path === '/' ? 'active' : '' %>" aria-current="page" href="/">Shop</a>
         </li>
+        <% if (isLogin) { %>
+          <li class="nav-item">
+            <a class="nav-link <%= path === '/cart' ? 'active' : '' %>" aria-current="page" href="/cart">Cart</a>
+          </li>
+        <% } %>
         <% if (!isLogin) { %>
           <!-- 沒有登入的話就顯示login -->
           <li class="nav-item">
@@ -24,6 +29,7 @@
       </ul>
       <% if (isLogin) { %>
         <form class="d-flex" action="/logout" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button class="btn btn-outline-primary">Logout</button>
         </form>
       <% } %>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>woman</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
+        background-color: white;
+        width: 100%;
+    }
+
+    .main-header {
+        background-color: #f8f9fa;
+    }
+
+    .member-information {
+        color: rgb(108, 174, 232);
+        font-size: 1rem;
+    }
+
+    .member-information a {
+        color: rgb(108, 174, 232);
+        text-decoration: none;
+    }
+
+    .offcanvas-bar {
+        background-color: rgb(112, 45, 45);
+    }
+
+    .search-bar {
+        margin-top: 10px;
+        height: 100%;
+    }
+
+    .navbar-brand {
+        margin-top: 10px;
+        width: 200px;
+    }
+
+    .object-cover {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media screen and (min-width:768px) {
+        .offcanvas-bar {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width:768px) {
+        .member-information {
+            display: none;
+        }
+
+        .main-logo {
+            display: none;
+        }
+
+        .blue-nav {
+            display: none;
+        }
+
+        .type-bar {
+            display: none;
+        }
+    }
+
+    /* 藍色navbar */
+    .blue-nav {
+        background-color: rgb(42, 105, 176);
+    }
+
+    .blue-nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+    nav {
+        /* margin: 10px auto; */
+        text-align: center;
+    }
+
+    nav ul {
+        border-radius: 10px;
+        display: inline-table;
+        position: relative;
+        list-style: none;
+    }
+
+    nav ul ul {
+        display: none;
+        list-style: none;
+        z-index: 2;
+    }
+
+    nav ul li {
+        float: left;
+        list-style: none;
+    }
+
+    nav ul::after {
+        content: "";
+        display: block;
+        clear: both;
+        list-style: none;
+    }
+
+    nav ul li a {
+        display: block;
+        text-decoration: none;
+        font-family: "微軟雅黑";
+
+    }
+
+    nav ul li:hover>ul {
+        display: block;
+        list-style: none;
+
+    }
+
+    nav ul li:hover {
+        background: rgb(238, 238, 251);
+        list-style: none;
+    }
+
+    nav ul li:hover a {
+        color: gray;
+    }
+
+    nav ul ul {
+        background: white;
+        border-radius: 20;
+        position: absolute;
+        top: 100%;
+        padding: 10px 10px;
+        list-style: none;
+        color: black;
+        border: 2px solid rgb(159, 153, 153);
+    }
+
+    nav ul ul li {
+        float: none;
+        /* border-bottom: 1px solid #575f6a;  */
+        list-style: none;
+
+    }
+
+    nav ul ul li a {
+        color: aqua;
+        background-color: white;
+        padding: 5px 10px;
+    }
+
+    nav ul ul li a:hover {
+        background: rgb(244, 241, 241);
+        color: rgb(49, 227, 168);
+    }
+
+    .member-btn {
+        background-color: #0669B2;
+        border: 0px;
+        padding: 5px 10px;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    /* 分類bar */
+    .type-bar {
+        box-sizing: border-box;
+        margin: 0px 20px;
+        background-color: #e7eaed;
+        padding: 20px 20px;
+    }
+
+    .type-bar ul {
+        list-style: none;
+    }
+
+    .type-bar ul a {
+        text-decoration: none;
+        color: gray;
+    }
+
+    .type-bar ul a:hover {
+        text-decoration: none;
+        color: rgb(150, 177, 219);
+    }
+
+    /* 商品區 */
+    .type-content {
+        padding: 10px 5px;
+    }
+
+    .saler figure {
+        display: inline-block;
+        max-width: 500px;
+        background-color: var(--main-color);
+        /* margin-right: 60px; */
+    }
+
+    .saler {
+        text-align: center;
+    }
+
+    .saler p {
+        line-height: 2;
+        font-size: 12px;
+    }
+
+    .price-btn {
+        font-size: 12px;
+
+        background-color: #FDD935;
+        border-radius: 5px;
+        border: 0px;
+        padding: 5px 25px;
+        margin-top: 10px;
+    }
+
+    .price-btn:hover {
+        background-color: #d8bc42;
+        transition: 0.5s;
+    }
+
+    /* Footer */
+    .main-footer {
+        background-color: #0D3861;
+        color: white;
+    }
+
+    .list-unstyled {
+        /* float: left; */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .list-unstyled {
+        font-size: 18px;
+        margin: 5px 0px 10px 0px;
+
+    }
+
+    .list-unstyled a {
+        color: white;
+        font-size: 12px;
+        text-decoration: none;
+    }
+
+    .list-unstyled a:hover {
+        color: rgb(169, 204, 221);
+        transition: 0.5s;
+    }
+
+    .media-logo {
+        color: white;
+        font-size: 35px;
+        letter-spacing: 20px;
+    }
+
+    .mail-set {
+        font-size: 14px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .mail-set:hover {
+        color: rgb(169, 204, 221);
+        transition: 0.5s;
+    }
+</style>
+
+
+<body>
+    <!-- 整個大header -->
+    <div class="container-fluid py-2 main-header">
+        <!-- 最上面會員資訊 -->
+        <div class="container-fluid member-information">
+            <div class="row justify-content-end ">
+
+                <div class="col-1">
+                    <a href="">登入/註冊</a> |
+                </div>
+                <div class="col-1">
+                    <a href="">線上客服</a> |
+                </div>
+                <div class="col-1">
+                    <a href=""><i class="bi bi-cart-fill"></i> </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- offcanvas bar(右邊彈出式視窗) -->
+        <nav class=" navbar navbar-light bg-light offcanvas-bar">
+            <div class="container-fluid justify-content-around">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <figure>
+                        <img class="object-cover"
+                            src="https://static.decathlon.tw/skin/frontend/enterprise/decathlon_tw/img/LogoDecathlon.png"
+                            alt="">
+                    </figure>
+                </a>
+
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <!-- <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
+                        <button class="offcanvas-title member-btn" id="offcanvasNavbarLabel">登入/註冊</button>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <br>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    男士
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                    <li><a class="dropdown-item" href="#">上衣</a></li>
+                                    <li><a class="dropdown-item" href="#">褲子</a></li>
+                                    <li><a class="dropdown-item" href="#">鞋類</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    女士
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                    <li><a class="dropdown-item" href="#">上衣</a></li>
+                                    <li><a class="dropdown-item" href="#">褲子</a></li>
+                                    <li><a class="dropdown-item" href="#">鞋類</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    兒童/青少年
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                    <li><a class="dropdown-item" href="#">上衣</a></li>
+                                    <li><a class="dropdown-item" href="#">鞋類</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- logo navbar -->
+        <div class="container-fluid  main-nav">
+            <div class="row justify-content-center">
+                <!-- <figure class=" row main-logo col-12 col-lg-6"> -->
+                <a class="navbar-brand row col-12 col-lg-6 main-logo" href="#">
+                    <figure>
+                        <img class="object-cover"
+                            src="https://static.decathlon.tw/skin/frontend/enterprise/decathlon_tw/img/LogoDecathlon.png"
+                            alt="">
+                    </figure>
+                </a>
+                <!-- </figure> -->
+                <form class="d-flex col-12 col-lg-4 search-bar py-1">
+                    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search" class="">
+                    <button class="btn btn-outline-success" type="submit"><i class="bi bi-search "></i></button>
+                </form>
+            </div>
+            <!-- nav bar -->
+            <div class="container-fluid">
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 藍色navbar -->
+    <div class="container-fluid blue-nav">
+        <nav>
+            <ul class="row justify-content-center">
+                <li class="col-2"><a href="#">男士</a>
+                    <ul>
+                        <li><a href="#">上衣</a></li>
+                        <li><a href="#">褲子</a></li>
+                        <li><a href="#">鞋類</a></li>
+                    </ul>
+                </li>
+                <li class="col-2"><a href="#">女士</a>
+                    <ul>
+                        <li><a href="#">上衣</a></li>
+                        <li><a href="#">褲子</a></li>
+                        <li><a href="#">鞋類</a></li>
+                    </ul>
+                </li>
+                <li class="col-2"><a href="#">兒童/青少年</a>
+                    <ul>
+                        <li><a href="#">上衣</a></li>
+                        <li><a href="#">鞋類</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <!-- 商品區 -->
+    <div class="container-fluid">
+        <div class="row justify-content-start">
+            <!-- 左邊清單bar -->
+            <div class=" col-2 justify-content-start type-bar ">
+                <h3>分類</h3>
+                <h5>↬男士</h5>
+                <ul>
+                    <li><a href="">上衣</a></li>
+                    <li><a href="">褲子</a></li>
+                    <li><a href="">鞋子</a></li>
+                </ul>
+                <hr>
+                <h5>↬女士</h5>
+                <ul>
+                    <li><a href="">上衣</a></li>
+                    <li><a href="">褲子</a></li>
+                    <li><a href="">鞋子</a></li>
+                </ul>
+                <hr>
+                <h5>↬兒童/青少年</h5>
+                <ul>
+                    <li><a href="">上衣</a></li>
+                    <li><a href="">鞋子</a></li>
+                </ul>
+            </div>
+            <!-- 商品區 -->
+            <div class="col-12  col-md-9">
+                <div class="row type-content">
+                    <!-- 女上衣區 -->
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/0/0/00-pixl-2156700_8506283.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 199元</button>
+                            <p>女款排汗跑步短袖上衣 </p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/b/a/ba96f015-5879-4573-a4c0-3eb33dbad9d8_8383580.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 149元</button>
+                            <p>女款初階健身短袖上衣 </p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/b/3/b3f5be27-ea4c-4c24-868f-b12adb57d412_8492281.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 199元</button>
+                            <p>女款登山快乾短袖上衣</p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/9/a/9afb58e9-358b-4c6c-bdc2-1e81f53772dd_8558562.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 199元</button>
+                            <p>女款柔軟跑步短袖上衣 </p>
+                        </figure>
+                    </div>
+                    <!-- 女褲子區 -->
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/c/3/c3a74eb8-22e4-451b-9a8d-2f15b6cbe0c4_8554846.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 149元</button>
+                            <p>女款初階健身短褲</p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/f/7/f75e96b0-c9a3-4b2f-a117-008ed4a7e25b_8561175.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 499元</button>
+                            <p>女款初階健身長褲 </p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/3/1/31fb8ea0-f792-447e-ae4a-25f4b2e8a7fd_8553389.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 299元</button>
+                            <p>女款透氣跑步縮口褲 </p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/4/d/4d00b749-257e-4e53-9e9b-e1f9636031a5_8511783.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 199元</button>
+                            <p>女款修身運動緊身褲</p>
+                        </figure>
+                    </div>
+                    <!-- 女鞋子區 -->
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/2/3/23-pixl-2155623_8488129.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 499元</button>
+                            <p>女款輕量緩震跑步鞋</p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/2/3/23-pixl-2174723_8520692.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 699元</button>
+                            <p>女款支撐緩震跑步鞋</p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/3/4/341ca416-dde6-472e-adaf-b78539211b43_8558239.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 999元</button>
+                            <p>女款緩衝抓地跑步鞋</p>
+                        </figure>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 saler">
+                        <figure>
+                            <a href=""><img
+                                    src="https://media.decathlon.tw/media/catalog/product/cache/10/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/2/4/24-pixl-2174724_8351800.jpg"
+                                    alt="">
+                            </a>
+                            <button class="price-btn">NT$ 399元</button>
+                            <p>女款舒適輕盈跑步鞋</p>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer區域 -->
+    <div class="container-fluid main-footer py-3">
+        <div class="container-fluid row justify-content-around">
+            <div class="row col-4  col-md-8 justify-content-center ">
+                <ul class="list-unstyled col-md-6 col-lg-3">關於迪卡儂
+                    <li><a href="">公司簡介</a></li>
+                    <li><a href="">人才招募</a></li>
+                </ul>
+                <ul class="list-unstyled col-md-6 col-lg-3">顧客服務
+                    <li><a href="">退換貨流程</a></li>
+                    <li><a href="">客服信箱</a></li>
+                    <li><a href="">常見問題Ｑ＆Ａ</a></li>
+                    <li><a href="">團購方法</a></li>
+                </ul>
+                <ul class="list-unstyled col-md-6 col-lg-3">實體店服務
+                    <li><a href="">客製化印花</a></li>
+                    <li><a href="">球拍穿線</a></li>
+                    <li><a href="">維修服務</a></li>
+                </ul>
+                <ul class="list-unstyled col-md-6 col-lg-3">會員俱樂部
+                    <li><a href="">會員獎勵計畫</a></li>
+                    <li><a href="">點數使用說明</a></li>
+                    <li><a href="">點數使用據點</a></li>
+                </ul>
+            </div>
+
+            <div class="col-8 col-md-4 row justify-content-center">
+                <div class="row ">
+                    <div class="col-12">
+                        <a href=""><i class="bi bi-youtube media-logo"></i></a>
+                        <a href=""><i class="bi bi-facebook media-logo"></i></a>
+                        <a href=""><i class="bi bi-instagram media-logo"></i></a>
+                        <a href=""><i class="bi bi-chat-dots media-logo"></i></a>
+                        <div class="col-12 py-2 ">
+                            <h4>客服中心</h4>
+                            <a class="mail-set"
+                                href="mailto:customer.service@decathlon.tw">customer.service@decathlon.tw</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
