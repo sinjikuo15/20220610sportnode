@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 ////////////////////////////////////////////////////////////
 
-const database = new Sequelize('vue-node-sports', 'root', '403200281', {
+const database = new Sequelize('jml-all', 'root', 'fn102', {
     dialect: 'mysql', 
     host: 'localhost'
 });
